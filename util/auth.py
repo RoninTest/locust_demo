@@ -1,27 +1,25 @@
-from locust import HttpUser
+# auth.py
 import json
 
 
-class UserAuth(HttpUser):
+def authenticate(user):
+    """Authenticate and return token"""
+    # Authentication request to get token
+    response = user.client.post(
+        "/auth",  # Auth endpoint
+        headers={"Content-Type": "application/json"},
+        data=json.dumps({
+            "username": "admin",  # Kullanıcı adı
+            "password": "password123"  # Şifre
+        })
+    )
 
-    def on_start(self):
-        self.token = None  # Token sadece auth olan task için kullanılacak
-
-    def authenticate(self):
-        # Auth request to get token
-        response = self.client.post(
-            "/auth",  # Endpoint for authentication
-            headers={"Content-Type": "application/json"},
-            data=json.dumps({
-                "username": "admin",  # Your username
-                "password": "password123"  # Your password
-            })
-        )
-
-        # If auth is successful, save the token
-        if response.status_code == 200:
-            auth_response = response.json()
-            self.token = auth_response['token']
-            print(f"Authenticated successfully. Token: {self.token}")
-        else:
-            print(f"Authentication failed! Status Code: {response.status_code}")
+    # Başarılı olursa, token'ı döner
+    if response.status_code == 200:
+        auth_response = response.json()
+        token = auth_response.get("token")
+        print(f"Authenticated successfully. Token: {token}")
+        return token
+    else:
+        print(f"Authentication failed! Status Code: {response.status_code}")
+        return None

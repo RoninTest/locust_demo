@@ -1,20 +1,27 @@
-from locust import task, tag
+from random import randint
+
+from locust import tag
 from tasks.base import BaseUser
+from datetime import datetime, timedelta
 
 
 @tag('createBooking')
 def create_booking(user):
+    current_date = datetime.now()
+
+    checkin_date = current_date.strftime("%Y-%m-%d")  # Sistem tarihi (string formatında)
+    checkout_date = (current_date + timedelta(days=3)).strftime("%Y-%m-%d")
     # Gönderilecek veriler
     booking_data = {
-        "firstname": "Jim",
-        "lastname": "Brown",
-        "totalprice": 111,
+        "firstname": "Roni",
+        "lastname": "Rola",
+        "totalprice": randint(50, 100),
         "depositpaid": True,
         "bookingdates": {
-            "checkin": "2018-01-01",
-            "checkout": "2019-01-01"
+            "checkin": checkin_date,
+            "checkout": checkout_date
         },
-        "additionalneeds": "Breakfast"
+        "additionalneeds": "Park"
     }
 
     # POST isteğini gönderme
