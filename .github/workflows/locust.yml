@@ -30,4 +30,4 @@ jobs:
       - name: Run Locust
         run: |
           source venv/bin/activate
-          LOCUST_ENV=prod locust -f locustfile.py --headless -u 50 -r 5 --run-time 1m
+          LOCUST_ENV=prod locust -f locustfile.py --headless -u 100 -r 5 --run-time 1m
