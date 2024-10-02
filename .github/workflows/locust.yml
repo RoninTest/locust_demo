@@ -24,4 +24,4 @@ jobs:
         pip install faker
 
     - name: Run Locust
-      run: LOCUST_ENV=prod locust -f locustfile.py --headless -u 10 -r 1 --run-time 10s
+      run: LOCUST_ENV=prod locust -f locustfile.py --headless -u 10 -r 1 --run-time 5s
