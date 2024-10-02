@@ -1,26 +1,21 @@
-name: Locust Test
-
-on:
-  push:
-    branches:
-      - master
-
 jobs:
-  run-locust:
+  performance_test:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Check out code
+        uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.9
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install locust
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install locust faker  # Faker ve Locust yükleniyor
 
-    - name: Run Locust
-      run: LOCUST_ENV=prod locust -f locustfile.py --headless -u 10 -r 1 --run-time 1m
+      - name: Run Locust tests
+        env:
+          LOCUST_ENV: prod
+        run: locust -f locustfile.py --headless -u 10 -r 1 --run-time 1m
