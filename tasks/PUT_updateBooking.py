@@ -38,7 +38,6 @@ def update_booking(user):
 
     if response.status_code == 200:
         logging.info("Booking updated successfully. Booking ID: %s", booking_id)
-        return response.json()
     else:
         logging.error("Failed to update booking. Status Code: %d", response.status_code)
         return None
