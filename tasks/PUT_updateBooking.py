@@ -1,7 +1,7 @@
 # update_booking.py
 import json
 
-from tasks.base import BaseUser
+from util.base import BaseUser
 from util.auth import authenticate
 from util.random_booking_id import get_random_booking_id
 from util.body import generate_booking_data

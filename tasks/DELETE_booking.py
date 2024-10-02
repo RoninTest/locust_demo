@@ -1,7 +1,7 @@
 # delete_booking.py
 import logging
 
-from tasks.base import BaseUser
+from util.base import BaseUser
 from util.auth import authenticate
 from util.random_booking_id import get_random_booking_id
 

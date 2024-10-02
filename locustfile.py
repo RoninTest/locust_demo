@@ -7,5 +7,5 @@ from tasks.PUT_updateBooking import UpdateBookingUser
 
 
 class MyUser:
-    wait_time = between(1, 40)
+    wait_time = between(1, 20)
     tasks = [CreateBookingUser,UpdateBookingUser, DeleteBookingUser]

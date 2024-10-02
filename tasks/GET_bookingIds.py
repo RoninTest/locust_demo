@@ -1,5 +1,5 @@
 from locust import tag
-from tasks.base import BaseUser
+from util.base import BaseUser
 
 
 @tag('getBookingIds')
