@@ -23,4 +23,4 @@ jobs:
         pip install locust
 
     - name: Run Locust
-      run: locust -f your_locustfile.py --headless -u 10 -r 1 --run-time 1m
+      run: LOCUST_ENV=prod locust -f locustfile.py --headless -u 10 -r 1 --run-time 1m
